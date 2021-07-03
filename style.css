@@ -1,11 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Festive&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
+:root {
+  --line-border-fill: #349;
+  --line-border-empty: #e0e0e0;
+}
+
 body {
-  font-family: "Big Shoulders Stencil Display", cursive;
+  background-color: #f6f7fb;
+  font-family: "Festive", cursive;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,53 +21,85 @@ body {
 }
 
 .container {
+  text-align: center;
+}
+
+.progress-container {
   display: flex;
-  width: 90vw;
-}
-
-.panel {
-  background-size: auto 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 80vh;
-  border-radius: 50px;
-  color: rgb(232, 219, 219);
-  cursor: pointer;
-  flex: 0.5;
-  margin: 10px;
+  justify-content: space-between;
   position: relative;
-  transition: flex 0.7s ease-in;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
 }
 
-.panel h3 {
-  font-size: 24px;
+.progress-container::before {
+  content: "";
+  background-color: var(--line-border-empty);
   position: absolute;
-  bottom: 20px;
-  left: 180px;
-  margin: 0;
-  opacity: 0;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  z-index: -1;
 }
 
-.panel.active {
-  flex: 5;
+.progress {
+  background-color: var(--line-border-fill);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 0%;
+  z-index: -1;
+  transition: 0.4s ease;
 }
 
-.panel.active h3 {
-  opacity: 1;
-  transition: opacity 0.3s ease-in 0.4s;
+.circle {
+  background-color: #fff;
+  color: #999;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+  transition: 0.4s ease;
 }
 
-@media (max-width: 480px) {
-  .container {
-    width: 100vh;
-  }
+.circle.active {
+  border-color: var(--line-border-fill);
+  background-color:rgb(55, 232, 39);
+  color: black;
 
-.panel:nth-of-type(4),
-.panel:nth-of-type(5){
-    display: none;
-}
-.panel h3 {
-  left: 20px;
 }
 
+.btn {
+  background-color: var(--line-border-fill);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  font-family: "Festive", cursive;
+  font-size: 20px;
+  padding: 2px 20px;
+  margin: 5px;
+}
+
+#prev {
+  border-radius: 50px 0 0 50px;
+}
+
+#next {
+  border-radius: 0 50px 50px 0;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  background-color: var(--line-border-empty);
 }
